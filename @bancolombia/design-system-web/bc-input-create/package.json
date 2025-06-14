@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-input-create) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-input-create.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-input-create.mjs",
+  "esm2020": "../esm2020/bc-input-create/bancolombia-design-system-web-bc-input-create.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-input-create.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-input-create.mjs",
+  "typings": "bancolombia-design-system-web-bc-input-create.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-input-create"
+}

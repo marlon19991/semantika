@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-status) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-status.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-status.mjs",
+  "esm2020": "../esm2020/bc-status/bancolombia-design-system-web-bc-status.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-status.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-status.mjs",
+  "typings": "bancolombia-design-system-web-bc-status.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-status"
+}

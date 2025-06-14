@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point for (bc-pictogram) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-pictogram.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-pictogram.mjs",
+  "esm2020": "../esm2020/bc-pictogram/bancolombia-design-system-web-bc-pictogram.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-pictogram.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-pictogram.mjs",
+  "typings": "bancolombia-design-system-web-bc-pictogram.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-pictogram"
+}

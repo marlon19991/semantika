@@ -1,0 +1,259 @@
+{
+  "design_system": {
+    "name": "Bancolombia Design System",
+    "version": "2.0.0",
+    "brand": {
+      "colors": {
+        "primary": {
+          "bc-yellow": "#FFCC02",
+          "bc-blue": "#004B87",
+          "bc-dark-blue": "#003366"
+        },
+        "semantic": {
+          "success": "#10B981",
+          "warning": "#F59E0B", 
+          "error": "#EF4444",
+          "info": "#3B82F6"
+        },
+        "neutral": {
+          "gray-50": "#F9FAFB",
+          "gray-100": "#F3F4F6",
+          "gray-200": "#E5E7EB",
+          "gray-300": "#D1D5DB",
+          "gray-400": "#9CA3AF",
+          "gray-500": "#6B7280",
+          "gray-600": "#4B5563",
+          "gray-700": "#374151",
+          "gray-800": "#1F2937",
+          "gray-900": "#111827"
+        }
+      },
+      "typography": {
+        "font-family": "Nunito Sans, system-ui, sans-serif",
+        "sizes": {
+          "xs": "12px",
+          "sm": "14px", 
+          "base": "16px",
+          "lg": "18px",
+          "xl": "20px",
+          "2xl": "24px",
+          "3xl": "30px",
+          "4xl": "36px"
+        },
+        "weights": {
+          "light": 300,
+          "regular": 400,
+          "medium": 500,
+          "semibold": 600,
+          "bold": 700,
+          "extrabold": 800
+        }
+      },
+      "spacing": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px", 
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px"
+      },
+      "border_radius": {
+        "none": "0px",
+        "sm": "4px",
+        "md": "8px",
+        "lg": "12px",
+        "xl": "16px",
+        "full": "9999px"
+      }
+    },
+    "components": {
+      "bc-button": {
+        "description": "Botón interactivo del design system de Bancolombia",
+        "usage": "Para acciones principales y secundarias",
+        "variants": {
+          "appearance": {
+            "primary": {
+              "background": "bc-blue",
+              "color": "white",
+              "use_case": "Acciones principales como enviar, confirmar, continuar"
+            },
+            "secondary": {
+              "background": "transparent",
+              "border": "bc-blue",
+              "color": "bc-blue", 
+              "use_case": "Acciones secundarias como cancelar, volver"
+            },
+            "ghost": {
+              "background": "transparent",
+              "color": "bc-blue",
+              "use_case": "Acciones sutiles, enlaces de acción"
+            },
+            "success": {
+              "background": "success",
+              "color": "white",
+              "use_case": "Acciones de confirmación exitosa"
+            },
+            "warning": {
+              "background": "warning", 
+              "color": "white",
+              "use_case": "Acciones de advertencia"
+            },
+            "error": {
+              "background": "error",
+              "color": "white", 
+              "use_case": "Acciones destructivas como eliminar"
+            }
+          },
+          "size": {
+            "small": {
+              "padding": "xs sm",
+              "font_size": "sm",
+              "height": "32px"
+            },
+            "medium": {
+              "padding": "sm md",
+              "font_size": "base", 
+              "height": "40px"
+            },
+            "large": {
+              "padding": "md lg",
+              "font_size": "lg",
+              "height": "48px"
+            }
+          }
+        },
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Texto que aparece en el botón",
+            "examples": ["Enviar", "Cancelar", "Confirmar", "Eliminar", "Guardar", "Continuar"]
+          },
+          "appearance": {
+            "type": "enum",
+            "options": ["primary", "secondary", "ghost", "success", "warning", "error"],
+            "default": "primary"
+          },
+          "size": {
+            "type": "enum", 
+            "options": ["small", "medium", "large"],
+            "default": "medium"
+          },
+          "disabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "loading": {
+            "type": "boolean",
+            "default": false
+          },
+          "full_width": {
+            "type": "boolean",
+            "default": false
+          },
+          "icon": {
+            "type": "string",
+            "description": "Icono opcional del botón"
+          }
+        },
+        "accessibility": {
+          "aria_label": "required_if_icon_only",
+          "keyboard_navigation": true,
+          "focus_visible": true
+        },
+        "code_patterns": {
+          "angular": {
+            "basic": "<bc-button>{{text}}</bc-button>",
+            "with_appearance": "<bc-button appearance=\"{{appearance}}\">{{text}}</bc-button>",
+            "with_size": "<bc-button size=\"{{size}}\">{{text}}</bc-button>",
+            "full_config": "<bc-button appearance=\"{{appearance}}\" size=\"{{size}}\" [disabled]=\"{{disabled}}\" [loading]=\"{{loading}}\">{{text}}</bc-button>"
+          }
+        }
+      },
+      "bc-input": {
+        "description": "Campo de entrada de texto del design system",
+        "usage": "Para captura de datos del usuario",
+        "variants": {
+          "type": {
+            "text": "Texto general",
+            "email": "Direcciones de correo electrónico", 
+            "password": "Contraseñas (texto oculto)",
+            "number": "Valores numéricos",
+            "tel": "Números telefónicos",
+            "url": "URLs"
+          },
+          "state": {
+            "default": "Estado normal",
+            "focus": "Cuando está enfocado",
+            "error": "Con mensaje de error",
+            "success": "Validación exitosa",
+            "disabled": "No editable"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "enum",
+            "options": ["text", "email", "password", "number", "tel", "url"],
+            "default": "text"
+          },
+          "label": {
+            "type": "string",
+            "description": "Etiqueta descriptiva del campo"
+          },
+          "placeholder": {
+            "type": "string", 
+            "description": "Texto de ayuda mostrado cuando está vacío"
+          },
+          "value": {
+            "type": "string",
+            "description": "Valor actual del input"
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "disabled": {
+            "type": "boolean", 
+            "default": false
+          },
+          "error_message": {
+            "type": "string",
+            "description": "Mensaje de error a mostrar"
+          },
+          "help_text": {
+            "type": "string",
+            "description": "Texto de ayuda adicional"
+          }
+        },
+        "code_patterns": {
+          "angular": {
+            "basic": "<bc-input placeholder=\"{{placeholder}}\"></bc-input>",
+            "with_label": "<bc-input label=\"{{label}}\" placeholder=\"{{placeholder}}\"></bc-input>",
+            "full_config": "<bc-input type=\"{{type}}\" label=\"{{label}}\" placeholder=\"{{placeholder}}\" [required]=\"{{required}}\" [disabled]=\"{{disabled}}\" error=\"{{error_message}}\"></bc-input>"
+          }
+        }
+      }
+    },
+    "guidelines": {
+      "color_usage": {
+        "primary_actions": "Usar bc-blue para acciones principales",
+        "success_actions": "Verde para confirmaciones y acciones exitosas", 
+        "warning_actions": "Amarillo para advertencias",
+        "destructive_actions": "Rojo para acciones destructivas",
+        "neutral_actions": "Grises para acciones neutrales"
+      },
+      "text_guidelines": {
+        "button_text": {
+          "action_oriented": "Usar verbos que describan la acción: Enviar, Guardar, Eliminar",
+          "clear_and_concise": "Máximo 2-3 palabras",
+          "consistent": "Mantener consistencia en terminología"
+        }
+      },
+      "accessibility": {
+        "color_contrast": "Cumplir WCAG 2.1 AA",
+        "keyboard_navigation": "Todos los elementos interactivos deben ser navegables por teclado",
+        "screen_readers": "Proveer labels apropiados para lectores de pantalla"
+      }
+    }
+  }
+} 

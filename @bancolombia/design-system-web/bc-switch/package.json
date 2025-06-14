@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-switch) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-switch.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-switch.mjs",
+  "esm2020": "../esm2020/bc-switch/bancolombia-design-system-web-bc-switch.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-switch.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-switch.mjs",
+  "typings": "bancolombia-design-system-web-bc-switch.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-switch"
+}

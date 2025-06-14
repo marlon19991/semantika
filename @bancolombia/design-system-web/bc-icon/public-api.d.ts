@@ -1,0 +1,10 @@
+export { BcIconComponent } from './bc-icon-component/bc-icon.component';
+export { BcIconModule } from './bc-icon.module';
+export { BC_FUNCTIONAL_ICONS } from './bc-icon-list/bc-functional-icons-list';
+export { BC_ILLUSTRATION_IMAGES } from './bc-icon-list/bc-ilustration-images-list';
+export { BC_PICTOGRAM_IMAGES_LIST } from './bc-icon-list/bc-pictogram-images-list';
+export { BC_PICTOGRAM_IMAGES_NEWS_LIST } from './bc-icon-list/bc-pictogram-images-list';
+export { BC_STROKE_IMAGES_LIST } from './bc-icon-list/bc-stroke-images-list';
+export { BC_LOGOS } from './bc-icon-list/bc-logo-list';
+export { SIZES } from './bc-icon-component/bc-icon.component';
+export { SizeType } from './bc-icon-component/bc-icon.component';

@@ -1,0 +1,24 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BcTemplateAuthenticationComponent } from './bc-template-authentication.component';
+import { BcFooterModule } from '@bancolombia/design-system-web/bc-footer';
+import { BcLogoModule } from '@bancolombia/design-system-web/bc-logo';
+import { BcInlineAlertModule } from '@bancolombia/design-system-web/bc-inline-alert';
+import { BcStepperModule } from '@bancolombia/design-system-web/bc-stepper';
+import { BcCardModule } from '@bancolombia/design-system-web/bc-card';
+import * as i0 from "@angular/core";
+import * as i1 from "@bancolombia/design-system-web/bc-logo";
+export class BcTemplateAuthenticationModule {
+}
+BcTemplateAuthenticationModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: BcTemplateAuthenticationModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+BcTemplateAuthenticationModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: BcTemplateAuthenticationModule, declarations: [BcTemplateAuthenticationComponent], imports: [CommonModule, BcFooterModule, BcInlineAlertModule, BcStepperModule, i1.BcLogoModule, BcCardModule], exports: [BcTemplateAuthenticationComponent] });
+BcTemplateAuthenticationModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: BcTemplateAuthenticationModule, imports: [[CommonModule, BcFooterModule, BcInlineAlertModule, BcStepperModule, BcLogoModule.forRoot(), BcCardModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: BcTemplateAuthenticationModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    declarations: [BcTemplateAuthenticationComponent],
+                    imports: [CommonModule, BcFooterModule, BcInlineAlertModule, BcStepperModule, BcLogoModule.forRoot(), BcCardModule],
+                    exports: [BcTemplateAuthenticationComponent],
+                }]
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYmMtdGVtcGxhdGUtYXV0aGVudGljYXRpb24ubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vcHJvamVjdHMvbmdfYmRzL2JjLXRlbXBsYXRlLWF1dGhlbnRpY2F0aW9uL2JjLXRlbXBsYXRlLWF1dGhlbnRpY2F0aW9uLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUMvQyxPQUFPLEVBQUUsaUNBQWlDLEVBQUUsTUFBTSx3Q0FBd0MsQ0FBQztBQUMzRixPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sMENBQTBDLENBQUM7QUFDMUUsT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLHdDQUF3QyxDQUFDO0FBQ3RFLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLGdEQUFnRCxDQUFDO0FBQ3JGLE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSwyQ0FBMkMsQ0FBQztBQUM1RSxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0sd0NBQXdDLENBQUM7OztBQU90RSxNQUFNLE9BQU8sOEJBQThCOzsySEFBOUIsOEJBQThCOzRIQUE5Qiw4QkFBOEIsaUJBSjFCLGlDQUFpQyxhQUN0QyxZQUFZLEVBQUUsY0FBYyxFQUFFLG1CQUFtQixFQUFFLGVBQWUsbUJBQTBCLFlBQVksYUFDeEcsaUNBQWlDOzRIQUVoQyw4QkFBOEIsWUFIaEMsQ0FBQyxZQUFZLEVBQUUsY0FBYyxFQUFFLG1CQUFtQixFQUFFLGVBQWUsRUFBRSxZQUFZLENBQUMsT0FBTyxFQUFFLEVBQUUsWUFBWSxDQUFDOzJGQUd4Ryw4QkFBOEI7a0JBTDFDLFFBQVE7bUJBQUM7b0JBQ1IsWUFBWSxFQUFFLENBQUMsaUNBQWlDLENBQUM7b0JBQ2pELE9BQU8sRUFBRSxDQUFDLFlBQVksRUFBRSxjQUFjLEVBQUUsbUJBQW1CLEVBQUUsZUFBZSxFQUFFLFlBQVksQ0FBQyxPQUFPLEVBQUUsRUFBRSxZQUFZLENBQUM7b0JBQ25ILE9BQU8sRUFBRSxDQUFDLGlDQUFpQyxDQUFDO2lCQUM3QyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE5nTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBDb21tb25Nb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb21tb24nO1xuaW1wb3J0IHsgQmNUZW1wbGF0ZUF1dGhlbnRpY2F0aW9uQ29tcG9uZW50IH0gZnJvbSAnLi9iYy10ZW1wbGF0ZS1hdXRoZW50aWNhdGlvbi5jb21wb25lbnQnO1xuaW1wb3J0IHsgQmNGb290ZXJNb2R1bGUgfSBmcm9tICdAYmFuY29sb21iaWEvZGVzaWduLXN5c3RlbS13ZWIvYmMtZm9vdGVyJztcbmltcG9ydCB7IEJjTG9nb01vZHVsZSB9IGZyb20gJ0BiYW5jb2xvbWJpYS9kZXNpZ24tc3lzdGVtLXdlYi9iYy1sb2dvJztcbmltcG9ydCB7IEJjSW5saW5lQWxlcnRNb2R1bGUgfSBmcm9tICdAYmFuY29sb21iaWEvZGVzaWduLXN5c3RlbS13ZWIvYmMtaW5saW5lLWFsZXJ0JztcbmltcG9ydCB7IEJjU3RlcHBlck1vZHVsZSB9IGZyb20gJ0BiYW5jb2xvbWJpYS9kZXNpZ24tc3lzdGVtLXdlYi9iYy1zdGVwcGVyJztcbmltcG9ydCB7IEJjQ2FyZE1vZHVsZSB9IGZyb20gJ0BiYW5jb2xvbWJpYS9kZXNpZ24tc3lzdGVtLXdlYi9iYy1jYXJkJztcblxuQE5nTW9kdWxlKHtcbiAgZGVjbGFyYXRpb25zOiBbQmNUZW1wbGF0ZUF1dGhlbnRpY2F0aW9uQ29tcG9uZW50XSxcbiAgaW1wb3J0czogW0NvbW1vbk1vZHVsZSwgQmNGb290ZXJNb2R1bGUsIEJjSW5saW5lQWxlcnRNb2R1bGUsIEJjU3RlcHBlck1vZHVsZSwgQmNMb2dvTW9kdWxlLmZvclJvb3QoKSwgQmNDYXJkTW9kdWxlXSxcbiAgZXhwb3J0czogW0JjVGVtcGxhdGVBdXRoZW50aWNhdGlvbkNvbXBvbmVudF0sXG59KVxuZXhwb3J0IGNsYXNzIEJjVGVtcGxhdGVBdXRoZW50aWNhdGlvbk1vZHVsZSB7fVxuIl19

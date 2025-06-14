@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-button-group) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-button-group.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-button-group.mjs",
+  "esm2020": "../esm2020/bc-button-group/bancolombia-design-system-web-bc-button-group.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-button-group.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-button-group.mjs",
+  "typings": "bancolombia-design-system-web-bc-button-group.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-button-group"
+}

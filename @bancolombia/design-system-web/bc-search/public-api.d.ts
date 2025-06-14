@@ -1,0 +1,9 @@
+export { BcSearchComponent } from './bc-search.component';
+export { BcSearchModule } from './bc-search.module';
+export { BcSearchAdvancedItemComponent } from './bc-search-item-advanced/bc-search-item-advanced.component';
+export { BcSearchLeftComponent } from './bc-search-left/bc-search-left.component';
+export { BcSearchRightComponent } from './bc-search-right/bc-search-right.component';
+export { BcSearchButtonComponent } from './bc-search-button/bc-search-button.component';
+export { BcSearchAdvancedComponent } from './bc-search-advanced/bc-search-advanced.component';
+export { BcSearchResultFilterComponent } from './bc-search-result-filter/bc-search-result-filter.component';
+export { BcSearchContentItemsComponent } from './bc-search-content-item/bc-search-content-items.component';

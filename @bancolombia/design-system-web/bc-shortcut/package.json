@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-shortcut) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-shortcut.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-shortcut.mjs",
+  "esm2020": "../esm2020/bc-shortcut/bancolombia-design-system-web-bc-shortcut.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-shortcut.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-shortcut.mjs",
+  "typings": "bancolombia-design-system-web-bc-shortcut.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-shortcut"
+}

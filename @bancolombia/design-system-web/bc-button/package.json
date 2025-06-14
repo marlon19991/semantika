@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point for (bc-button) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-button.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-button.mjs",
+  "esm2020": "../esm2020/bc-button/bancolombia-design-system-web-bc-button.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-button.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-button.mjs",
+  "typings": "bancolombia-design-system-web-bc-button.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-button"
+}

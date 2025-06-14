@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-skip-link) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-skip-link.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-skip-link.mjs",
+  "esm2020": "../esm2020/bc-skip-link/bancolombia-design-system-web-bc-skip-link.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-skip-link.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-skip-link.mjs",
+  "typings": "bancolombia-design-system-web-bc-skip-link.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-skip-link"
+}

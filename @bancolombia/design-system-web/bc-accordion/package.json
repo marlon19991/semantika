@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point for (bc-accordion) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-accordion.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-accordion.mjs",
+  "esm2020": "../esm2020/bc-accordion/bancolombia-design-system-web-bc-accordion.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-accordion.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-accordion.mjs",
+  "typings": "bancolombia-design-system-web-bc-accordion.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-accordion"
+}

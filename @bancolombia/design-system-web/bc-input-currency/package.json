@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-input-currency) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-input-currency.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-input-currency.mjs",
+  "esm2020": "../esm2020/bc-input-currency/bancolombia-design-system-web-bc-input-currency.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-input-currency.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-input-currency.mjs",
+  "typings": "bancolombia-design-system-web-bc-input-currency.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-input-currency"
+}

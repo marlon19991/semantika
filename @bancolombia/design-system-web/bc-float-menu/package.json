@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-float-menu) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-float-menu.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-float-menu.mjs",
+  "esm2020": "../esm2020/bc-float-menu/bancolombia-design-system-web-bc-float-menu.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-float-menu.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-float-menu.mjs",
+  "typings": "bancolombia-design-system-web-bc-float-menu.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-float-menu"
+}

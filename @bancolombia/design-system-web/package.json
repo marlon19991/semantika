@@ -1,0 +1,658 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "name": "@bancolombia/design-system-web",
+  "version": "11.10.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@bancolombia/design-system-behaviors": "^6.57.0",
+    "@angular/common": ">=12.2.0",
+    "@angular/core": ">=12.2.0",
+    "@angular/forms": ">=12.2.0"
+  },
+  "module": "fesm2015/bancolombia-design-system-web.mjs",
+  "es2020": "fesm2020/bancolombia-design-system-web.mjs",
+  "esm2020": "esm2020/bancolombia-design-system-web.mjs",
+  "fesm2020": "fesm2020/bancolombia-design-system-web.mjs",
+  "fesm2015": "fesm2015/bancolombia-design-system-web.mjs",
+  "typings": "bancolombia-design-system-web.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./bancolombia-design-system-web.d.ts",
+      "esm2020": "./esm2020/bancolombia-design-system-web.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web.mjs"
+    },
+    "./bc-accordion": {
+      "types": "./bc-accordion/bancolombia-design-system-web-bc-accordion.d.ts",
+      "esm2020": "./esm2020/bc-accordion/bancolombia-design-system-web-bc-accordion.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-accordion.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-accordion.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-accordion.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-accordion.mjs"
+    },
+    "./bc-alert": {
+      "types": "./bc-alert/bancolombia-design-system-web-bc-alert.d.ts",
+      "esm2020": "./esm2020/bc-alert/bancolombia-design-system-web-bc-alert.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-alert.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-alert.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-alert.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-alert.mjs"
+    },
+    "./bc-avatar": {
+      "types": "./bc-avatar/bancolombia-design-system-web-bc-avatar.d.ts",
+      "esm2020": "./esm2020/bc-avatar/bancolombia-design-system-web-bc-avatar.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-avatar.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-avatar.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-avatar.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-avatar.mjs"
+    },
+    "./bc-badge": {
+      "types": "./bc-badge/bancolombia-design-system-web-bc-badge.d.ts",
+      "esm2020": "./esm2020/bc-badge/bancolombia-design-system-web-bc-badge.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-badge.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-badge.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-badge.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-badge.mjs"
+    },
+    "./bc-breadcrumb": {
+      "types": "./bc-breadcrumb/bancolombia-design-system-web-bc-breadcrumb.d.ts",
+      "esm2020": "./esm2020/bc-breadcrumb/bancolombia-design-system-web-bc-breadcrumb.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-breadcrumb.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-breadcrumb.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-breadcrumb.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-breadcrumb.mjs"
+    },
+    "./bc-button-group": {
+      "types": "./bc-button-group/bancolombia-design-system-web-bc-button-group.d.ts",
+      "esm2020": "./esm2020/bc-button-group/bancolombia-design-system-web-bc-button-group.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-button-group.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-button-group.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-button-group.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-button-group.mjs"
+    },
+    "./bc-button": {
+      "types": "./bc-button/bancolombia-design-system-web-bc-button.d.ts",
+      "esm2020": "./esm2020/bc-button/bancolombia-design-system-web-bc-button.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-button.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-button.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-button.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-button.mjs"
+    },
+    "./bc-calendar": {
+      "types": "./bc-calendar/bancolombia-design-system-web-bc-calendar.d.ts",
+      "esm2020": "./esm2020/bc-calendar/bancolombia-design-system-web-bc-calendar.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-calendar.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-calendar.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-calendar.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-calendar.mjs"
+    },
+    "./bc-card-authentication": {
+      "types": "./bc-card-authentication/bancolombia-design-system-web-bc-card-authentication.d.ts",
+      "esm2020": "./esm2020/bc-card-authentication/bancolombia-design-system-web-bc-card-authentication.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-authentication.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-authentication.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-authentication.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-authentication.mjs"
+    },
+    "./bc-card-container": {
+      "types": "./bc-card-container/bancolombia-design-system-web-bc-card-container.d.ts",
+      "esm2020": "./esm2020/bc-card-container/bancolombia-design-system-web-bc-card-container.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-container.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-container.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-container.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-container.mjs"
+    },
+    "./bc-card-content": {
+      "types": "./bc-card-content/bancolombia-design-system-web-bc-card-content.d.ts",
+      "esm2020": "./esm2020/bc-card-content/bancolombia-design-system-web-bc-card-content.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-content.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-content.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-content.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-content.mjs"
+    },
+    "./bc-card-primary": {
+      "types": "./bc-card-primary/bancolombia-design-system-web-bc-card-primary.d.ts",
+      "esm2020": "./esm2020/bc-card-primary/bancolombia-design-system-web-bc-card-primary.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-primary.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-primary.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-primary.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-primary.mjs"
+    },
+    "./bc-card-select-v2": {
+      "types": "./bc-card-select-v2/bancolombia-design-system-web-bc-card-select-v2.d.ts",
+      "esm2020": "./esm2020/bc-card-select-v2/bancolombia-design-system-web-bc-card-select-v2.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-select-v2.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-select-v2.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-select-v2.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-select-v2.mjs"
+    },
+    "./bc-card-select": {
+      "types": "./bc-card-select/bancolombia-design-system-web-bc-card-select.d.ts",
+      "esm2020": "./esm2020/bc-card-select/bancolombia-design-system-web-bc-card-select.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-select.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-select.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-select.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-select.mjs"
+    },
+    "./bc-card-tdc": {
+      "types": "./bc-card-tdc/bancolombia-design-system-web-bc-card-tdc.d.ts",
+      "esm2020": "./esm2020/bc-card-tdc/bancolombia-design-system-web-bc-card-tdc.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card-tdc.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card-tdc.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card-tdc.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card-tdc.mjs"
+    },
+    "./bc-card": {
+      "types": "./bc-card/bancolombia-design-system-web-bc-card.d.ts",
+      "esm2020": "./esm2020/bc-card/bancolombia-design-system-web-bc-card.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-card.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-card.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-card.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-card.mjs"
+    },
+    "./bc-carousel": {
+      "types": "./bc-carousel/bancolombia-design-system-web-bc-carousel.d.ts",
+      "esm2020": "./esm2020/bc-carousel/bancolombia-design-system-web-bc-carousel.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-carousel.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-carousel.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-carousel.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-carousel.mjs"
+    },
+    "./bc-checkbox": {
+      "types": "./bc-checkbox/bancolombia-design-system-web-bc-checkbox.d.ts",
+      "esm2020": "./esm2020/bc-checkbox/bancolombia-design-system-web-bc-checkbox.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-checkbox.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-checkbox.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-checkbox.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-checkbox.mjs"
+    },
+    "./bc-circle-loading": {
+      "types": "./bc-circle-loading/bancolombia-design-system-web-bc-circle-loading.d.ts",
+      "esm2020": "./esm2020/bc-circle-loading/bancolombia-design-system-web-bc-circle-loading.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-circle-loading.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-circle-loading.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-circle-loading.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-circle-loading.mjs"
+    },
+    "./bc-coach-mark": {
+      "types": "./bc-coach-mark/bancolombia-design-system-web-bc-coach-mark.d.ts",
+      "esm2020": "./esm2020/bc-coach-mark/bancolombia-design-system-web-bc-coach-mark.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-coach-mark.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-coach-mark.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-coach-mark.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-coach-mark.mjs"
+    },
+    "./bc-data-table": {
+      "types": "./bc-data-table/bancolombia-design-system-web-bc-data-table.d.ts",
+      "esm2020": "./esm2020/bc-data-table/bancolombia-design-system-web-bc-data-table.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-data-table.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-data-table.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-data-table.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-data-table.mjs"
+    },
+    "./bc-expansion-panel": {
+      "types": "./bc-expansion-panel/bancolombia-design-system-web-bc-expansion-panel.d.ts",
+      "esm2020": "./esm2020/bc-expansion-panel/bancolombia-design-system-web-bc-expansion-panel.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-expansion-panel.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-expansion-panel.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-expansion-panel.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-expansion-panel.mjs"
+    },
+    "./bc-file-download": {
+      "types": "./bc-file-download/bancolombia-design-system-web-bc-file-download.d.ts",
+      "esm2020": "./esm2020/bc-file-download/bancolombia-design-system-web-bc-file-download.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-file-download.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-file-download.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-file-download.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-file-download.mjs"
+    },
+    "./bc-float-menu": {
+      "types": "./bc-float-menu/bancolombia-design-system-web-bc-float-menu.d.ts",
+      "esm2020": "./esm2020/bc-float-menu/bancolombia-design-system-web-bc-float-menu.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-float-menu.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-float-menu.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-float-menu.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-float-menu.mjs"
+    },
+    "./bc-footer": {
+      "types": "./bc-footer/bancolombia-design-system-web-bc-footer.d.ts",
+      "esm2020": "./esm2020/bc-footer/bancolombia-design-system-web-bc-footer.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-footer.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-footer.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-footer.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-footer.mjs"
+    },
+    "./bc-header": {
+      "types": "./bc-header/bancolombia-design-system-web-bc-header.d.ts",
+      "esm2020": "./esm2020/bc-header/bancolombia-design-system-web-bc-header.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-header.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-header.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-header.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-header.mjs"
+    },
+    "./bc-helpers": {
+      "types": "./bc-helpers/bancolombia-design-system-web-bc-helpers.d.ts",
+      "esm2020": "./esm2020/bc-helpers/bancolombia-design-system-web-bc-helpers.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-helpers.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-helpers.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-helpers.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-helpers.mjs"
+    },
+    "./bc-icon-button": {
+      "types": "./bc-icon-button/bancolombia-design-system-web-bc-icon-button.d.ts",
+      "esm2020": "./esm2020/bc-icon-button/bancolombia-design-system-web-bc-icon-button.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-icon-button.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-icon-button.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-icon-button.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-icon-button.mjs"
+    },
+    "./bc-icon": {
+      "types": "./bc-icon/bancolombia-design-system-web-bc-icon.d.ts",
+      "esm2020": "./esm2020/bc-icon/bancolombia-design-system-web-bc-icon.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-icon.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-icon.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-icon.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-icon.mjs"
+    },
+    "./bc-illustration": {
+      "types": "./bc-illustration/bancolombia-design-system-web-bc-illustration.d.ts",
+      "esm2020": "./esm2020/bc-illustration/bancolombia-design-system-web-bc-illustration.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-illustration.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-illustration.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-illustration.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-illustration.mjs"
+    },
+    "./bc-inline-alert": {
+      "types": "./bc-inline-alert/bancolombia-design-system-web-bc-inline-alert.d.ts",
+      "esm2020": "./esm2020/bc-inline-alert/bancolombia-design-system-web-bc-inline-alert.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-inline-alert.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-inline-alert.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-inline-alert.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-inline-alert.mjs"
+    },
+    "./bc-input-create": {
+      "types": "./bc-input-create/bancolombia-design-system-web-bc-input-create.d.ts",
+      "esm2020": "./esm2020/bc-input-create/bancolombia-design-system-web-bc-input-create.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-create.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-create.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-create.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-create.mjs"
+    },
+    "./bc-input-currency": {
+      "types": "./bc-input-currency/bancolombia-design-system-web-bc-input-currency.d.ts",
+      "esm2020": "./esm2020/bc-input-currency/bancolombia-design-system-web-bc-input-currency.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-currency.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-currency.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-currency.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-currency.mjs"
+    },
+    "./bc-input-date-range": {
+      "types": "./bc-input-date-range/bancolombia-design-system-web-bc-input-date-range.d.ts",
+      "esm2020": "./esm2020/bc-input-date-range/bancolombia-design-system-web-bc-input-date-range.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-date-range.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-date-range.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-date-range.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-date-range.mjs"
+    },
+    "./bc-input-date": {
+      "types": "./bc-input-date/bancolombia-design-system-web-bc-input-date.d.ts",
+      "esm2020": "./esm2020/bc-input-date/bancolombia-design-system-web-bc-input-date.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-date.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-date.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-date.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-date.mjs"
+    },
+    "./bc-input-file": {
+      "types": "./bc-input-file/bancolombia-design-system-web-bc-input-file.d.ts",
+      "esm2020": "./esm2020/bc-input-file/bancolombia-design-system-web-bc-input-file.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-file.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-file.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-file.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-file.mjs"
+    },
+    "./bc-input-number": {
+      "types": "./bc-input-number/bancolombia-design-system-web-bc-input-number.d.ts",
+      "esm2020": "./esm2020/bc-input-number/bancolombia-design-system-web-bc-input-number.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-number.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-number.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-number.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-number.mjs"
+    },
+    "./bc-input-select-v2": {
+      "types": "./bc-input-select-v2/bancolombia-design-system-web-bc-input-select-v2.d.ts",
+      "esm2020": "./esm2020/bc-input-select-v2/bancolombia-design-system-web-bc-input-select-v2.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-select-v2.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-select-v2.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-select-v2.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-select-v2.mjs"
+    },
+    "./bc-input-select": {
+      "types": "./bc-input-select/bancolombia-design-system-web-bc-input-select.d.ts",
+      "esm2020": "./esm2020/bc-input-select/bancolombia-design-system-web-bc-input-select.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-select.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-select.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-select.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-select.mjs"
+    },
+    "./bc-input-token": {
+      "types": "./bc-input-token/bancolombia-design-system-web-bc-input-token.d.ts",
+      "esm2020": "./esm2020/bc-input-token/bancolombia-design-system-web-bc-input-token.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input-token.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input-token.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input-token.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input-token.mjs"
+    },
+    "./bc-input": {
+      "types": "./bc-input/bancolombia-design-system-web-bc-input.d.ts",
+      "esm2020": "./esm2020/bc-input/bancolombia-design-system-web-bc-input.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-input.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-input.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-input.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-input.mjs"
+    },
+    "./bc-key-validation": {
+      "types": "./bc-key-validation/bancolombia-design-system-web-bc-key-validation.d.ts",
+      "esm2020": "./esm2020/bc-key-validation/bancolombia-design-system-web-bc-key-validation.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-key-validation.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-key-validation.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-key-validation.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-key-validation.mjs"
+    },
+    "./bc-link": {
+      "types": "./bc-link/bancolombia-design-system-web-bc-link.d.ts",
+      "esm2020": "./esm2020/bc-link/bancolombia-design-system-web-bc-link.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-link.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-link.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-link.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-link.mjs"
+    },
+    "./bc-list-row": {
+      "types": "./bc-list-row/bancolombia-design-system-web-bc-list-row.d.ts",
+      "esm2020": "./esm2020/bc-list-row/bancolombia-design-system-web-bc-list-row.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-list-row.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-list-row.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-list-row.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-list-row.mjs"
+    },
+    "./bc-list": {
+      "types": "./bc-list/bancolombia-design-system-web-bc-list.d.ts",
+      "esm2020": "./esm2020/bc-list/bancolombia-design-system-web-bc-list.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-list.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-list.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-list.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-list.mjs"
+    },
+    "./bc-loader": {
+      "types": "./bc-loader/bancolombia-design-system-web-bc-loader.d.ts",
+      "esm2020": "./esm2020/bc-loader/bancolombia-design-system-web-bc-loader.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-loader.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-loader.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-loader.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-loader.mjs"
+    },
+    "./bc-logo": {
+      "types": "./bc-logo/bancolombia-design-system-web-bc-logo.d.ts",
+      "esm2020": "./esm2020/bc-logo/bancolombia-design-system-web-bc-logo.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-logo.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-logo.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-logo.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-logo.mjs"
+    },
+    "./bc-menu-tabs-vertical": {
+      "types": "./bc-menu-tabs-vertical/bancolombia-design-system-web-bc-menu-tabs-vertical.d.ts",
+      "esm2020": "./esm2020/bc-menu-tabs-vertical/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs"
+    },
+    "./bc-menu": {
+      "types": "./bc-menu/bancolombia-design-system-web-bc-menu.d.ts",
+      "esm2020": "./esm2020/bc-menu/bancolombia-design-system-web-bc-menu.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-menu.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-menu.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-menu.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-menu.mjs"
+    },
+    "./bc-modal": {
+      "types": "./bc-modal/bancolombia-design-system-web-bc-modal.d.ts",
+      "esm2020": "./esm2020/bc-modal/bancolombia-design-system-web-bc-modal.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-modal.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-modal.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-modal.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-modal.mjs"
+    },
+    "./bc-notification": {
+      "types": "./bc-notification/bancolombia-design-system-web-bc-notification.d.ts",
+      "esm2020": "./esm2020/bc-notification/bancolombia-design-system-web-bc-notification.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-notification.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-notification.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-notification.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-notification.mjs"
+    },
+    "./bc-off-canvas": {
+      "types": "./bc-off-canvas/bancolombia-design-system-web-bc-off-canvas.d.ts",
+      "esm2020": "./esm2020/bc-off-canvas/bancolombia-design-system-web-bc-off-canvas.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-off-canvas.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-off-canvas.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-off-canvas.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-off-canvas.mjs"
+    },
+    "./bc-page-header": {
+      "types": "./bc-page-header/bancolombia-design-system-web-bc-page-header.d.ts",
+      "esm2020": "./esm2020/bc-page-header/bancolombia-design-system-web-bc-page-header.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-page-header.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-page-header.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-page-header.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-page-header.mjs"
+    },
+    "./bc-paginator-v2": {
+      "types": "./bc-paginator-v2/bancolombia-design-system-web-bc-paginator-v2.d.ts",
+      "esm2020": "./esm2020/bc-paginator-v2/bancolombia-design-system-web-bc-paginator-v2.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-paginator-v2.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-paginator-v2.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-paginator-v2.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-paginator-v2.mjs"
+    },
+    "./bc-paginator": {
+      "types": "./bc-paginator/bancolombia-design-system-web-bc-paginator.d.ts",
+      "esm2020": "./esm2020/bc-paginator/bancolombia-design-system-web-bc-paginator.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-paginator.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-paginator.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-paginator.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-paginator.mjs"
+    },
+    "./bc-pictogram": {
+      "types": "./bc-pictogram/bancolombia-design-system-web-bc-pictogram.d.ts",
+      "esm2020": "./esm2020/bc-pictogram/bancolombia-design-system-web-bc-pictogram.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-pictogram.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-pictogram.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-pictogram.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-pictogram.mjs"
+    },
+    "./bc-planner": {
+      "types": "./bc-planner/bancolombia-design-system-web-bc-planner.d.ts",
+      "esm2020": "./esm2020/bc-planner/bancolombia-design-system-web-bc-planner.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-planner.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-planner.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-planner.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-planner.mjs"
+    },
+    "./bc-pop-over": {
+      "types": "./bc-pop-over/bancolombia-design-system-web-bc-pop-over.d.ts",
+      "esm2020": "./esm2020/bc-pop-over/bancolombia-design-system-web-bc-pop-over.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-pop-over.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-pop-over.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-pop-over.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-pop-over.mjs"
+    },
+    "./bc-preloader": {
+      "types": "./bc-preloader/bancolombia-design-system-web-bc-preloader.d.ts",
+      "esm2020": "./esm2020/bc-preloader/bancolombia-design-system-web-bc-preloader.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-preloader.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-preloader.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-preloader.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-preloader.mjs"
+    },
+    "./bc-progress-bar": {
+      "types": "./bc-progress-bar/bancolombia-design-system-web-bc-progress-bar.d.ts",
+      "esm2020": "./esm2020/bc-progress-bar/bancolombia-design-system-web-bc-progress-bar.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-progress-bar.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-progress-bar.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-progress-bar.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-progress-bar.mjs"
+    },
+    "./bc-radio": {
+      "types": "./bc-radio/bancolombia-design-system-web-bc-radio.d.ts",
+      "esm2020": "./esm2020/bc-radio/bancolombia-design-system-web-bc-radio.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-radio.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-radio.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-radio.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-radio.mjs"
+    },
+    "./bc-search": {
+      "types": "./bc-search/bancolombia-design-system-web-bc-search.d.ts",
+      "esm2020": "./esm2020/bc-search/bancolombia-design-system-web-bc-search.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-search.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-search.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-search.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-search.mjs"
+    },
+    "./bc-services": {
+      "types": "./bc-services/bancolombia-design-system-web-bc-services.d.ts",
+      "esm2020": "./esm2020/bc-services/bancolombia-design-system-web-bc-services.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-services.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-services.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-services.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-services.mjs"
+    },
+    "./bc-shortcut": {
+      "types": "./bc-shortcut/bancolombia-design-system-web-bc-shortcut.d.ts",
+      "esm2020": "./esm2020/bc-shortcut/bancolombia-design-system-web-bc-shortcut.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-shortcut.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-shortcut.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-shortcut.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-shortcut.mjs"
+    },
+    "./bc-sidebar": {
+      "types": "./bc-sidebar/bancolombia-design-system-web-bc-sidebar.d.ts",
+      "esm2020": "./esm2020/bc-sidebar/bancolombia-design-system-web-bc-sidebar.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-sidebar.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-sidebar.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-sidebar.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-sidebar.mjs"
+    },
+    "./bc-skip-link": {
+      "types": "./bc-skip-link/bancolombia-design-system-web-bc-skip-link.d.ts",
+      "esm2020": "./esm2020/bc-skip-link/bancolombia-design-system-web-bc-skip-link.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-skip-link.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-skip-link.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-skip-link.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-skip-link.mjs"
+    },
+    "./bc-slider": {
+      "types": "./bc-slider/bancolombia-design-system-web-bc-slider.d.ts",
+      "esm2020": "./esm2020/bc-slider/bancolombia-design-system-web-bc-slider.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-slider.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-slider.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-slider.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-slider.mjs"
+    },
+    "./bc-status": {
+      "types": "./bc-status/bancolombia-design-system-web-bc-status.d.ts",
+      "esm2020": "./esm2020/bc-status/bancolombia-design-system-web-bc-status.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-status.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-status.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-status.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-status.mjs"
+    },
+    "./bc-stepper": {
+      "types": "./bc-stepper/bancolombia-design-system-web-bc-stepper.d.ts",
+      "esm2020": "./esm2020/bc-stepper/bancolombia-design-system-web-bc-stepper.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-stepper.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-stepper.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-stepper.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-stepper.mjs"
+    },
+    "./bc-stroke": {
+      "types": "./bc-stroke/bancolombia-design-system-web-bc-stroke.d.ts",
+      "esm2020": "./esm2020/bc-stroke/bancolombia-design-system-web-bc-stroke.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-stroke.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-stroke.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-stroke.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-stroke.mjs"
+    },
+    "./bc-switch": {
+      "types": "./bc-switch/bancolombia-design-system-web-bc-switch.d.ts",
+      "esm2020": "./esm2020/bc-switch/bancolombia-design-system-web-bc-switch.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-switch.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-switch.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-switch.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-switch.mjs"
+    },
+    "./bc-table": {
+      "types": "./bc-table/bancolombia-design-system-web-bc-table.d.ts",
+      "esm2020": "./esm2020/bc-table/bancolombia-design-system-web-bc-table.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-table.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-table.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-table.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-table.mjs"
+    },
+    "./bc-tabs-group": {
+      "types": "./bc-tabs-group/bancolombia-design-system-web-bc-tabs-group.d.ts",
+      "esm2020": "./esm2020/bc-tabs-group/bancolombia-design-system-web-bc-tabs-group.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-tabs-group.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-tabs-group.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-tabs-group.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-tabs-group.mjs"
+    },
+    "./bc-tag": {
+      "types": "./bc-tag/bancolombia-design-system-web-bc-tag.d.ts",
+      "esm2020": "./esm2020/bc-tag/bancolombia-design-system-web-bc-tag.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-tag.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-tag.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-tag.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-tag.mjs"
+    },
+    "./bc-template-authentication": {
+      "types": "./bc-template-authentication/bancolombia-design-system-web-bc-template-authentication.d.ts",
+      "esm2020": "./esm2020/bc-template-authentication/bancolombia-design-system-web-bc-template-authentication.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-template-authentication.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-template-authentication.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-template-authentication.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-template-authentication.mjs"
+    },
+    "./bc-tooltip": {
+      "types": "./bc-tooltip/bancolombia-design-system-web-bc-tooltip.d.ts",
+      "esm2020": "./esm2020/bc-tooltip/bancolombia-design-system-web-bc-tooltip.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-tooltip.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-tooltip.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-tooltip.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-tooltip.mjs"
+    },
+    "./bc-total-value": {
+      "types": "./bc-total-value/bancolombia-design-system-web-bc-total-value.d.ts",
+      "esm2020": "./esm2020/bc-total-value/bancolombia-design-system-web-bc-total-value.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-total-value.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-total-value.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-total-value.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-total-value.mjs"
+    },
+    "./bc-transaction-status": {
+      "types": "./bc-transaction-status/bancolombia-design-system-web-bc-transaction-status.d.ts",
+      "esm2020": "./esm2020/bc-transaction-status/bancolombia-design-system-web-bc-transaction-status.mjs",
+      "es2020": "./fesm2020/bancolombia-design-system-web-bc-transaction-status.mjs",
+      "es2015": "./fesm2015/bancolombia-design-system-web-bc-transaction-status.mjs",
+      "node": "./fesm2015/bancolombia-design-system-web-bc-transaction-status.mjs",
+      "default": "./fesm2020/bancolombia-design-system-web-bc-transaction-status.mjs"
+    }
+  },
+  "sideEffects": false
+}

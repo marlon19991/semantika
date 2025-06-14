@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-search) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-search.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-search.mjs",
+  "esm2020": "../esm2020/bc-search/bancolombia-design-system-web-bc-search.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-search.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-search.mjs",
+  "typings": "bancolombia-design-system-web-bc-search.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-search"
+}

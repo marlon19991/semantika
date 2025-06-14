@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "bc-list row",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-list-row.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-list-row.mjs",
+  "esm2020": "../esm2020/bc-list-row/bancolombia-design-system-web-bc-list-row.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-list-row.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-list-row.mjs",
+  "typings": "bancolombia-design-system-web-bc-list-row.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-list-row"
+}

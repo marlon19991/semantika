@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-card-container) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-card-container.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-card-container.mjs",
+  "esm2020": "../esm2020/bc-card-container/bancolombia-design-system-web-bc-card-container.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-card-container.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-card-container.mjs",
+  "typings": "bancolombia-design-system-web-bc-card-container.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-card-container"
+}

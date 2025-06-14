@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-footer) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-page-header.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-page-header.mjs",
+  "esm2020": "../esm2020/bc-page-header/bancolombia-design-system-web-bc-page-header.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-page-header.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-page-header.mjs",
+  "typings": "bancolombia-design-system-web-bc-page-header.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-page-header"
+}

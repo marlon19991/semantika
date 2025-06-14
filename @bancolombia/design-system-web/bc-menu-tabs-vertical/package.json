@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point (bc-menu-tabs-vertical) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+  "esm2020": "../esm2020/bc-menu-tabs-vertical/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-menu-tabs-vertical.mjs",
+  "typings": "bancolombia-design-system-web-bc-menu-tabs-vertical.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-menu-tabs-vertical"
+}

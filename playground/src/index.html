@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Semantika Playground - Ambiente de Pruebas</title>
+    
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="styles/playground.css">
+    <link rel="stylesheet" href="styles/bancolombia-ds.css">
+    <link rel="stylesheet" href="styles/components.css">
+    
+    <!-- Editor de código Monaco -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <div id="app">
+        <!-- Header del Playground -->
+        <header class="playground-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>
+                        <i class="fas fa-gamepad"></i>
+                        Semantika Playground
+                    </h1>
+                    <span class="version">v2.0</span>
+                </div>
+                <div class="header-actions">
+                    <button id="toggle-theme" class="btn-icon" title="Cambiar tema">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button id="toggle-responsive" class="btn-icon" title="Vista responsive">
+                        <i class="fas fa-mobile-alt"></i>
+                    </button>
+                    <button id="share-playground" class="btn-icon" title="Compartir">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="components-count">15</span>
+                    <span class="stat-label">Componentes</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="tests-run">0</span>
+                    <span class="stat-label">Pruebas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="quality-score">--</span>
+                    <span class="stat-label">Calidad</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Panel de navegación -->
+        <nav class="playground-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-panel="editor">
+                    <i class="fas fa-code"></i>
+                    Editor
+                </button>
+                <button class="nav-tab" data-panel="examples">
+                    <i class="fas fa-lightbulb"></i>
+                    Ejemplos
+                </button>
+                <button class="nav-tab" data-panel="components">
+                    <i class="fas fa-cubes"></i>
+                    Componentes
+                </button>
+                <button class="nav-tab" data-panel="docs">
+                    <i class="fas fa-book"></i>
+                    Documentación
+                </button>
+            </div>
+            <div class="nav-actions">
+                <button id="clear-editor" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-trash"></i>
+                    Limpiar
+                </button>
+                <button id="format-code" class="btn btn-secondary btn-sm">
+                    <i class="fas fa-magic"></i>
+                    Formatear
+                </button>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        <main class="playground-main">
+            <!-- Panel del Editor -->
+            <div id="editor-panel" class="panel active">
+                <div class="panel-layout">
+                    <!-- Editor de código -->
+                    <div class="editor-section">
+                        <div class="section-header">
+                            <h3>
+                                <i class="fas fa-code"></i>
+                                Editor de Código
+                            </h3>
+                            <div class="editor-controls">
+                                <select id="code-language" class="form-select">
+                                    <option value="html">HTML</option>
+                                    <option value="typescript">Angular</option>
+                                </select>
+                                <button id="run-code" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-play"></i>
+                                    Ejecutar
+                                </button>
+                            </div>
+                        </div>
+                        <div id="code-editor" class="code-editor"></div>
+                        <div class="editor-footer">
+                            <div class="editor-info">
+                                <span>Líneas: <span id="line-count">0</span></span>
+                                <span>Caracteres: <span id="char-count">0</span></span>
+                            </div>
+                            <div class="editor-actions">
+                                <button id="copy-code" class="btn-link">
+                                    <i class="fas fa-copy"></i>
+                                    Copiar
+                                </button>
+                                <button id="export-code" class="btn-link">
+                                    <i class="fas fa-download"></i>
+                                    Exportar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vista previa -->
+                    <div class="preview-section">
+                        <div class="section-header">
+                            <h3>
+                                <i class="fas fa-eye"></i>
+                                Vista Previa
+                            </h3>
+                            <div class="preview-controls">
+                                <select id="device-selector" class="form-select">
+                                    <option value="desktop">Escritorio</option>
+                                    <option value="tablet">Tablet</option>
+                                    <option value="mobile">Móvil</option>
+                                </select>
+                                <button id="refresh-preview" class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-sync"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="preview-container" class="preview-container">
+                            <iframe id="preview-frame" src="about:blank"></iframe>
+                        </div>
+                        <div class="preview-footer">
+                            <div class="preview-status">
+                                <span class="status-indicator" id="preview-status">Listo</span>
+                            </div>
+                            <div class="preview-actions">
+                                <button id="fullscreen-preview" class="btn-link">
+                                    <i class="fas fa-expand"></i>
+                                    Pantalla completa
+                                </button>
+                                <button id="screenshot-preview" class="btn-link">
+                                    <i class="fas fa-camera"></i>
+                                    Captura
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de calidad -->
+                <div class="quality-panel">
+                    <div class="section-header">
+                        <h3>
+                            <i class="fas fa-shield-alt"></i>
+                            Control de Calidad
+                        </h3>
+                        <div class="quality-score-badge" id="quality-badge">
+                            <span class="score">--</span>
+                            <span class="label">Calidad</span>
+                        </div>
+                    </div>
+                    <div class="quality-content">
+                        <div class="quality-metrics">
+                            <div class="metric">
+                                <div class="metric-header">
+                                    <span class="metric-name">Validez del Componente</span>
+                                    <span class="metric-score" id="validity-score">--</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" id="validity-fill"></div>
+                                </div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-header">
+                                    <span class="metric-name">Accesibilidad</span>
+                                    <span class="metric-score" id="accessibility-score">--</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" id="accessibility-fill"></div>
+                                </div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric-header">
+                                    <span class="metric-name">Sintaxis</span>
+                                    <span class="metric-score" id="syntax-score">--</span>
+                                </div>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" id="syntax-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quality-suggestions" id="quality-suggestions">
+                            <p class="no-suggestions">Ejecuta el código para ver sugerencias de calidad</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Ejemplos -->
+            <div id="examples-panel" class="panel">
+                <div class="examples-grid">
+                    <div class="example-category">
+                        <h3>Botones</h3>
+                        <div class="example-items">
+                            <div class="example-item" data-code="<bc-button appearance='primary'>Botón Primario</bc-button>">
+                                <div class="example-preview">
+                                    <bc-button appearance="primary">Botón Primario</bc-button>
+                                </div>
+                                <div class="example-info">
+                                    <span class="example-title">Botón Primario</span>
+                                    <button class="btn-link use-example">Usar</button>
+                                </div>
+                            </div>
+                            <div class="example-item" data-code="<bc-button appearance='secondary' size='large'>Botón Secundario</bc-button>">
+                                <div class="example-preview">
+                                    <bc-button appearance="secondary" size="large">Botón Secundario</bc-button>
+                                </div>
+                                <div class="example-info">
+                                    <span class="example-title">Botón Secundario Grande</span>
+                                    <button class="btn-link use-example">Usar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="example-category">
+                        <h3>Formularios</h3>
+                        <div class="example-items">
+                            <div class="example-item" data-code="<bc-input type='email' label='Correo electrónico' required></bc-input>">
+                                <div class="example-preview">
+                                    <bc-input type="email" label="Correo electrónico" required></bc-input>
+                                </div>
+                                <div class="example-info">
+                                    <span class="example-title">Campo Email</span>
+                                    <button class="btn-link use-example">Usar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="example-category">
+                        <h3>Alertas</h3>
+                        <div class="example-items">
+                            <div class="example-item" data-code="<bc-alert type='success' title='Éxito'>Operación completada correctamente</bc-alert>">
+                                <div class="example-preview">
+                                    <bc-alert type="success" title="Éxito">Operación completada correctamente</bc-alert>
+                                </div>
+                                <div class="example-info">
+                                    <span class="example-title">Alerta de Éxito</span>
+                                    <button class="btn-link use-example">Usar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Componentes -->
+            <div id="components-panel" class="panel">
+                <div class="components-library">
+                    <div class="search-components">
+                        <input type="text" id="component-search" placeholder="Buscar componentes..." class="form-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="components-list" id="components-list">
+                        <!-- Los componentes se cargan dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Documentación -->
+            <div id="docs-panel" class="panel">
+                <div class="docs-content">
+                    <h2>Documentación del Playground</h2>
+                    <div class="docs-sections">
+                        <section class="doc-section">
+                            <h3>Cómo usar el playground</h3>
+                            <ol>
+                                <li>Describe tu componente en Semantika: <em>"botón azul que diga Confirmar"</em></li>
+                                <li>Copia el código HTML/Angular generado</li>
+                                <li>Pégalo en el editor de código</li>
+                                <li>Haz clic en "Ejecutar" para ver el resultado</li>
+                                <li>Revisa el panel de calidad para mejoras</li>
+                            </ol>
+                        </section>
+                        
+                        <section class="doc-section">
+                            <h3>Componentes disponibles</h3>
+                            <p>El playground incluye todos los componentes del Design System de Bancolombia:</p>
+                            <ul>
+                                <li><code>bc-button</code> - Botones interactivos</li>
+                                <li><code>bc-input</code> - Campos de entrada</li>
+                                <li><code>bc-card</code> - Tarjetas de contenido</li>
+                                <li><code>bc-modal</code> - Diálogos modales</li>
+                                <li><code>bc-alert</code> - Alertas y notificaciones</li>
+                                <li>Y muchos más...</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Toast notifications -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Modales -->
+        <div id="share-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Compartir Playground</h3>
+                    <button class="btn-close" data-close="share-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Comparte este código con tu equipo:</p>
+                    <div class="share-url">
+                        <input type="text" id="share-url-input" readonly class="form-input">
+                        <button id="copy-share-url" class="btn btn-secondary">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="components/code-editor.js"></script>
+    <script src="components/live-preview.js"></script>
+    <script src="components/quality-checker.js"></script>
+    <script src="playground.js"></script>
+</body>
+</html> 

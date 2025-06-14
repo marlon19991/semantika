@@ -1,0 +1,13 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/package.schema.json",
+  "description": "A secondary entry point for (bc-data-table) ",
+  "private": true,
+  "module": "../fesm2015/bancolombia-design-system-web-bc-data-table.mjs",
+  "es2020": "../fesm2020/bancolombia-design-system-web-bc-data-table.mjs",
+  "esm2020": "../esm2020/bc-data-table/bancolombia-design-system-web-bc-data-table.mjs",
+  "fesm2020": "../fesm2020/bancolombia-design-system-web-bc-data-table.mjs",
+  "fesm2015": "../fesm2015/bancolombia-design-system-web-bc-data-table.mjs",
+  "typings": "bancolombia-design-system-web-bc-data-table.d.ts",
+  "sideEffects": false,
+  "name": "@bancolombia/design-system-web/bc-data-table"
+}

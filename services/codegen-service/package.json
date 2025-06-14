@@ -1,0 +1,22 @@
+{
+  "name": "codegen-service",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "openai": "^4.28.0",
+    "ts-morph": "^20.3.0",
+    "fastify": "^4.27.2"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.4",
+    "@types/node": "^20.11.19",
+    "@types/fastify": "^4.22.3"
+  }
+} 
