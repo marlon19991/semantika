@@ -45,6 +45,24 @@ class ComponentResponse(BaseModel):
     description: str
     timestamp: str
 
+class PlaygroundValidationRequest(BaseModel):
+    html: str
+    css: str = ""
+    javascript: str = ""
+
+class ValidationIssue(BaseModel):
+    severity: str  # "high", "medium", "low"
+    title: str
+    description: str
+    line: int = None
+
+class PlaygroundValidationResponse(BaseModel):
+    success: bool
+    accessibility_score: int
+    performance_score: int
+    design_system_score: int
+    issues: list[ValidationIssue]
+
 # Plantillas optimizadas de componentes
 COMPONENT_TEMPLATES = {
     "button": {
@@ -163,6 +181,38 @@ async def generate_component(request: ComponentRequest):
     except Exception as e:
         logger.error(f"Error generando componente: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generando componente: {str(e)}")
+
+@app.post("/playground/validate", response_model=PlaygroundValidationResponse)
+async def validate_playground_code(request: PlaygroundValidationRequest):
+    """
+    Validar código del playground y proporcionar métricas de calidad
+    """
+    try:
+        logger.info("Validando código del playground")
+        
+        # Analizar accesibilidad
+        accessibility_score = analyze_accessibility(request.html)
+        
+        # Analizar performance
+        performance_score = analyze_performance(request.html, request.css, request.javascript)
+        
+        # Analizar uso del Design System
+        design_system_score = analyze_design_system(request.html)
+        
+        # Encontrar issues
+        issues = find_code_issues(request.html, request.css, request.javascript)
+        
+        return PlaygroundValidationResponse(
+            success=True,
+            accessibility_score=accessibility_score,
+            performance_score=performance_score,
+            design_system_score=design_system_score,
+            issues=issues
+        )
+        
+    except Exception as e:
+        logger.error(f"Error validando código: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error validando código: {str(e)}")
 
 def detect_component_type(description: str) -> str:
     """Detectar el tipo de componente basado en la descripción"""
@@ -319,6 +369,143 @@ def extract_alert_message(description: str) -> str:
         return "Ten cuidado con esta acción"
     else:
         return "Información importante"
+
+# ===== FUNCIONES DE VALIDACIÓN DEL PLAYGROUND =====
+
+def analyze_accessibility(html: str) -> int:
+    """Analizar accesibilidad del código HTML"""
+    score = 100
+    
+    # Verificar imágenes sin alt
+    img_tags = re.findall(r'<img[^>]*>', html, re.IGNORECASE)
+    for img in img_tags:
+        if 'alt=' not in img:
+            score -= 15
+    
+    # Verificar inputs sin labels
+    input_tags = re.findall(r'<input[^>]*>', html, re.IGNORECASE)
+    label_tags = re.findall(r'<label[^>]*>', html, re.IGNORECASE)
+    if input_tags and not label_tags:
+        score -= 20
+    
+    # Verificar headings jerárquicos
+    headings = re.findall(r'<h([1-6])[^>]*>', html, re.IGNORECASE)
+    if headings:
+        heading_levels = [int(h) for h in headings]
+        if heading_levels and min(heading_levels) > 1:
+            score -= 10
+    
+    return max(0, score)
+
+def analyze_performance(html: str, css: str, javascript: str) -> int:
+    """Analizar performance del código"""
+    score = 100
+    
+    # Penalizar por CSS muy largo
+    if len(css) > 2000:
+        score -= 15
+    
+    # Penalizar por JavaScript muy largo
+    if len(javascript) > 2000:
+        score -= 15
+    
+    # Penalizar por HTML muy largo
+    if len(html) > 3000:
+        score -= 10
+    
+    # Verificar estilos inline
+    if 'style=' in html:
+        score -= 10
+    
+    # Verificar scripts inline
+    if '<script>' in html:
+        score -= 10
+    
+    return max(0, score)
+
+def analyze_design_system(html: str) -> int:
+    """Analizar uso del Design System"""
+    ds_components = [
+        'bc-button', 'bc-card', 'bc-input', 'bc-alert', 'bc-modal',
+        'bc-form', 'bc-label', 'bc-select', 'bc-checkbox', 'bc-radio'
+    ]
+    
+    used_components = []
+    for component in ds_components:
+        if component in html:
+            used_components.append(component)
+    
+    if not used_components:
+        return 0
+    
+    # Calcular score basado en componentes usados
+    score = min(100, len(used_components) * 20)
+    
+    # Bonus por usar componentes correctamente
+    if 'bc-form-group' in html and 'bc-input' in html:
+        score += 10
+    
+    if 'bc-card-header' in html and 'bc-card-body' in html:
+        score += 10
+    
+    return min(100, score)
+
+def find_code_issues(html: str, css: str, javascript: str) -> list[ValidationIssue]:
+    """Encontrar issues en el código"""
+    issues = []
+    
+    # Issues de HTML
+    if not html.strip():
+        issues.append(ValidationIssue(
+            severity="high",
+            title="HTML vacío",
+            description="No hay contenido HTML para mostrar"
+        ))
+    
+    # Verificar estilos inline
+    if 'style=' in html:
+        issues.append(ValidationIssue(
+            severity="medium",
+            title="Estilos inline detectados",
+            description="Considera mover los estilos al CSS para mejor mantenimiento"
+        ))
+    
+    # Verificar imágenes sin alt
+    img_without_alt = re.findall(r'<img(?![^>]*alt=)[^>]*>', html, re.IGNORECASE)
+    if img_without_alt:
+        issues.append(ValidationIssue(
+            severity="high",
+            title="Imágenes sin texto alternativo",
+            description="Las imágenes deben tener atributo 'alt' para accesibilidad"
+        ))
+    
+    # Verificar inputs sin labels
+    input_tags = re.findall(r'<input[^>]*>', html, re.IGNORECASE)
+    label_tags = re.findall(r'<label[^>]*>', html, re.IGNORECASE)
+    if input_tags and not label_tags:
+        issues.append(ValidationIssue(
+            severity="medium",
+            title="Inputs sin etiquetas",
+            description="Los campos de entrada deben tener etiquetas asociadas"
+        ))
+    
+    # Issues de CSS
+    if len(css) > 1500:
+        issues.append(ValidationIssue(
+            severity="low",
+            title="CSS extenso",
+            description="Considera dividir el CSS en múltiples archivos"
+        ))
+    
+    # Issues de JavaScript
+    if 'console.log' in javascript:
+        issues.append(ValidationIssue(
+            severity="low",
+            title="Console.log en producción",
+            description="Remueve los console.log antes de producción"
+        ))
+    
+    return issues
 
 if __name__ == "__main__":
     import uvicorn

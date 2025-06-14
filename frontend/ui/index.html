@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Semantika - Generador de Componentes del Design System" />
-  <title>Semantika | Generador de Componentes</title>
+  <meta name="description" content="Semantika - Generador de Componentes del Design System con Playground" />
+  <title>Semantika | Generador + Playground</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/editor/editor.main.css">
 </head>
 <body>
   <!-- Header -->
@@ -21,7 +22,7 @@
           <span class="logo-icon">🧠</span>
           Semantika
         </h1>
-        <p class="tagline">Generador de Componentes del Design System de Bancolombia</p>
+        <p class="tagline">Generador de Componentes del Design System + Playground</p>
         <div class="header-actions">
           <button id="themeToggle" class="theme-toggle" title="Cambiar tema">
             <span class="theme-icon">🌙</span>
@@ -31,81 +32,223 @@
     </div>
   </header>
 
+  <!-- Navigation Tabs -->
+  <nav class="nav-tabs">
+    <div class="container">
+      <div class="tabs-container">
+        <button class="tab-button active" data-tab="generator">
+          <span class="tab-icon">⚡</span>
+          Generador
+        </button>
+        <button class="tab-button" data-tab="playground">
+          <span class="tab-icon">🎮</span>
+          Playground
+        </button>
+      </div>
+    </div>
+  </nav>
+
   <!-- Main Content -->
   <main class="main">
     <div class="container">
       
-      <!-- Generator Section -->
-      <section class="generator-section">
-        <!-- Input Section -->
-        <div class="input-section">
-          <div class="input-card">
-            <h2 class="section-title">Describe tu componente</h2>
-            <p class="section-description">
-              Utiliza lenguaje natural para generar componentes del Design System
-            </p>
-            
-            <div class="input-group">
-              <label for="prompt" class="input-label">
-                Descripción en lenguaje natural
-              </label>
-              <textarea 
-                id="prompt" 
-                class="prompt-input" 
-                rows="4" 
-                placeholder="Ej: botón primario azul para guardar, tarjeta de producto, campo de email, alerta de éxito..."
-                maxlength="500"
-              ></textarea>
-              <div class="char-counter">
-                <span id="charCount">0</span>/500 caracteres
+      <!-- Generator Tab -->
+      <div id="generatorTab" class="tab-content active">
+        <section class="generator-section">
+          <!-- Input Section -->
+          <div class="input-section">
+            <div class="input-card">
+              <h2 class="section-title">Describe tu componente</h2>
+              <p class="section-description">
+                Utiliza lenguaje natural para generar componentes del Design System
+              </p>
+              
+              <div class="input-group">
+                <label for="prompt" class="input-label">
+                  Descripción en lenguaje natural
+                </label>
+                <textarea 
+                  id="prompt" 
+                  class="prompt-input" 
+                  rows="4" 
+                  placeholder="Ej: botón primario azul para guardar, tarjeta de producto, campo de email, alerta de éxito..."
+                  maxlength="500"
+                ></textarea>
+                <div class="char-counter">
+                  <span id="charCount">0</span>/500 caracteres
+                </div>
               </div>
-            </div>
 
-            <div class="action-buttons">
-              <button id="btnCode" class="btn btn-primary" disabled>
-                <span class="btn-icon">⚡</span>
-                Generar Código
-                <div class="btn-loader"></div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Results Section -->
-        <section id="resultsSection" class="results-section" style="display: none;">
-          <div class="results-card">
-            <div class="results-header">
-              <h2 class="section-title">Componente Generado</h2>
-              <div class="results-actions">
-                <button id="btnCopy" class="btn btn-ghost btn-sm">
-                  <span class="btn-icon">📋</span>
-                  Copiar
+              <div class="action-buttons">
+                <button id="btnCode" class="btn btn-primary" disabled>
+                  <span class="btn-icon">⚡</span>
+                  Generar Código
+                  <div class="btn-loader"></div>
+                </button>
+                <button id="btnSendToPlayground" class="btn btn-secondary" disabled>
+                  <span class="btn-icon">🎮</span>
+                  Enviar a Playground
                 </button>
               </div>
             </div>
-            
-            <div class="results-content">
-              <div class="code-container">
-                <div class="code-header">
-                  <span class="code-language">HTML - Design System</span>
-                  <span id="componentType" class="component-type"></span>
+          </div>
+
+          <!-- Results Section -->
+          <section id="resultsSection" class="results-section" style="display: none;">
+            <div class="results-card">
+              <div class="results-header">
+                <h2 class="section-title">Componente Generado</h2>
+                <div class="results-actions">
+                  <button id="btnCopy" class="btn btn-ghost btn-sm">
+                    <span class="btn-icon">📋</span>
+                    Copiar
+                  </button>
                 </div>
-                <pre><code id="generatedCode" class="language-html"></code></pre>
+              </div>
+              
+              <div class="results-content">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-language">HTML - Design System</span>
+                    <span id="componentType" class="component-type"></span>
+                  </div>
+                  <pre><code id="generatedCode" class="language-html"></code></pre>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- History Section -->
+          <section class="history-section">
+            <div class="history-card">
+              <h3 class="section-title">Historial Reciente</h3>
+              <div id="historyContainer" class="history-container">
+                <p class="empty-state">No hay componentes generados aún</p>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <!-- Playground Tab -->
+      <div id="playgroundTab" class="tab-content">
+        <section class="playground-section">
+          <div class="playground-header">
+            <h2 class="section-title">Playground Interactivo</h2>
+            <p class="section-description">
+              Edita y prueba componentes en tiempo real
+            </p>
+            <div class="playground-actions">
+              <button id="btnRunCode" class="btn btn-primary">
+                <span class="btn-icon">▶️</span>
+                Ejecutar
+              </button>
+              <button id="btnClearPlayground" class="btn btn-ghost">
+                <span class="btn-icon">🗑️</span>
+                Limpiar
+              </button>
+              <button id="btnFullscreen" class="btn btn-ghost">
+                <span class="btn-icon">⛶</span>
+                Pantalla Completa
+              </button>
+            </div>
+          </div>
+
+          <div class="playground-container">
+            <!-- Code Editor -->
+            <div class="playground-panel editor-panel">
+              <div class="panel-header">
+                <h3 class="panel-title">
+                  <span class="panel-icon">📝</span>
+                  Editor de Código
+                </h3>
+                <div class="panel-actions">
+                  <select id="languageSelect" class="language-select">
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JavaScript</option>
+                  </select>
+                </div>
+              </div>
+              <div class="panel-content">
+                <div id="codeEditor" class="code-editor"></div>
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="playground-panel preview-panel">
+              <div class="panel-header">
+                <h3 class="panel-title">
+                  <span class="panel-icon">👁️</span>
+                  Vista Previa
+                </h3>
+                <div class="panel-actions">
+                  <div class="device-selector">
+                    <button class="device-btn active" data-device="desktop" title="Desktop">
+                      <i class="fas fa-desktop"></i>
+                    </button>
+                    <button class="device-btn" data-device="tablet" title="Tablet">
+                      <i class="fas fa-tablet-alt"></i>
+                    </button>
+                    <button class="device-btn" data-device="mobile" title="Móvil">
+                      <i class="fas fa-mobile-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-content">
+                <div class="preview-container">
+                  <iframe id="previewFrame" class="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quality Control Panel -->
+          <div class="quality-panel">
+            <div class="panel-header">
+              <h3 class="panel-title">
+                <span class="panel-icon">🎯</span>
+                Control de Calidad
+              </h3>
+              <button id="btnAnalyze" class="btn btn-secondary btn-sm">
+                <span class="btn-icon">🔍</span>
+                Analizar
+              </button>
+            </div>
+            <div class="panel-content">
+              <div id="qualityResults" class="quality-results">
+                <div class="quality-metrics">
+                  <div class="metric">
+                    <span class="metric-label">Accesibilidad</span>
+                    <div class="metric-bar">
+                      <div class="metric-fill" data-score="0"></div>
+                    </div>
+                    <span class="metric-score">0%</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Performance</span>
+                    <div class="metric-bar">
+                      <div class="metric-fill" data-score="0"></div>
+                    </div>
+                    <span class="metric-score">0%</span>
+                  </div>
+                  <div class="metric">
+                    <span class="metric-label">Design System</span>
+                    <div class="metric-bar">
+                      <div class="metric-fill" data-score="0"></div>
+                    </div>
+                    <span class="metric-score">0%</span>
+                  </div>
+                </div>
+                <div id="qualityIssues" class="quality-issues">
+                  <p class="empty-state">Ejecuta el análisis para ver sugerencias</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
-
-        <!-- History Section -->
-        <section class="history-section">
-          <div class="history-card">
-            <h3 class="section-title">Historial Reciente</h3>
-            <div id="historyContainer" class="history-container">
-              <p class="empty-state">No hay componentes generados aún</p>
-            </div>
-          </div>
-        </section>
-      </section>
+      </div>
 
     </div>
   </main>
@@ -113,7 +256,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2024 Bancolombia - Semantika v2.0</p>
+      <p>&copy; 2024 Bancolombia - Semantika v2.0 con Playground</p>
     </div>
   </footer>
 
@@ -121,13 +264,14 @@
   <div id="loadingOverlay" class="loading-overlay" style="display: none;">
     <div class="loading-content">
       <div class="loading-spinner"></div>
-      <p>Generando componente...</p>
+      <p>Procesando...</p>
     </div>
   </div>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.js"></script>
   <script src="main.js"></script>
 </body>
 </html> 

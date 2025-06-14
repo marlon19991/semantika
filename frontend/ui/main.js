@@ -1,13 +1,14 @@
 /**
- * Semantika Frontend Application - Versión Simplificada
- * Generador de Componentes del Design System
- * @version 2.0.0
+ * Semantika Frontend Application - Con Playground Integrado
+ * Generador de Componentes del Design System + Playground Interactivo
+ * @version 2.1.0
  */
 
 // ===== CONFIGURACIÓN =====
 const CONFIG = {
   API_BASE: "http://localhost:8000",
   STORAGE_KEY: "semantika_history",
+  PLAYGROUND_STORAGE_KEY: "semantika_playground",
   HISTORY_LIMIT: 10
 };
 
@@ -21,6 +22,8 @@ class AppState {
     this.history = this.loadHistory();
     this.isLoading = false;
     this.currentResult = null;
+    this.currentTab = 'generator';
+    this.playgroundCode = this.loadPlaygroundCode();
   }
 
   loadHistory() {
@@ -33,11 +36,37 @@ class AppState {
     }
   }
 
+  loadPlaygroundCode() {
+    try {
+      const stored = localStorage.getItem(CONFIG.PLAYGROUND_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : {
+        html: '<bc-button type="primary" size="medium">Hola Mundo</bc-button>',
+        css: '/* Estilos personalizados */\nbc-button {\n  margin: 20px;\n}',
+        javascript: '// JavaScript personalizado\nconsole.log("Playground cargado");'
+      };
+    } catch (error) {
+      console.warn('Error cargando código del playground:', error);
+      return {
+        html: '<bc-button type="primary" size="medium">Hola Mundo</bc-button>',
+        css: '',
+        javascript: ''
+      };
+    }
+  }
+
   saveHistory() {
     try {
       localStorage.setItem(CONFIG.STORAGE_KEY, JSON.stringify(this.history));
     } catch (error) {
       console.warn('Error guardando historial:', error);
+    }
+  }
+
+  savePlaygroundCode() {
+    try {
+      localStorage.setItem(CONFIG.PLAYGROUND_STORAGE_KEY, JSON.stringify(this.playgroundCode));
+    } catch (error) {
+      console.warn('Error guardando código del playground:', error);
     }
   }
 
@@ -112,6 +141,7 @@ class AppState {
     const hasQuery = query.length > 0;
     
     $('#btnCode').disabled = !hasQuery || this.isLoading;
+    $('#btnSendToPlayground').disabled = !this.currentResult || this.isLoading;
   }
 
   setLoading(isLoading) {
@@ -146,6 +176,379 @@ class AppState {
       if (window.Prism) {
         Prism.highlightElement(codeElement);
       }
+    }
+    
+    this.toggleButton();
+  }
+
+  switchTab(tabName) {
+    this.currentTab = tabName;
+    
+    // Actualizar botones de pestañas
+    $$('.tab-button').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.tab === tabName);
+    });
+    
+    // Actualizar contenido de pestañas
+    $$('.tab-content').forEach(content => {
+      content.classList.toggle('active', content.id === `${tabName}Tab`);
+    });
+    
+    // Inicializar playground si es necesario
+    if (tabName === 'playground' && !this.playgroundInitialized) {
+      this.initializePlayground();
+    }
+  }
+
+  sendToPlayground() {
+    if (this.currentResult && this.currentResult.component_code) {
+      this.playgroundCode.html = this.currentResult.component_code;
+      this.savePlaygroundCode();
+      
+      // Cambiar a la pestaña del playground
+      this.switchTab('playground');
+      
+      // Actualizar el editor si está inicializado
+      if (this.monacoEditor) {
+        this.monacoEditor.setValue(this.currentResult.component_code);
+        this.updatePreview();
+      }
+      
+      showToast('Código enviado al playground', 'success');
+    }
+  }
+
+  async initializePlayground() {
+    if (this.playgroundInitialized) return;
+    
+    try {
+      // Cargar Monaco Editor
+      await this.loadMonacoEditor();
+      this.setupPlaygroundEventListeners();
+      this.updatePreview();
+      this.playgroundInitialized = true;
+    } catch (error) {
+      console.error('Error inicializando playground:', error);
+      showToast('Error cargando el playground', 'error');
+    }
+  }
+
+  async loadMonacoEditor() {
+    return new Promise((resolve, reject) => {
+      if (window.monaco) {
+        this.setupMonacoEditor();
+        resolve();
+        return;
+      }
+
+      require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs' } });
+      require(['vs/editor/editor.main'], () => {
+        this.setupMonacoEditor();
+        resolve();
+      }, reject);
+    });
+  }
+
+  setupMonacoEditor() {
+    const editorContainer = $('#codeEditor');
+    if (!editorContainer) return;
+
+    this.monacoEditor = monaco.editor.create(editorContainer, {
+      value: this.playgroundCode.html,
+      language: 'html',
+      theme: document.documentElement.dataset.theme === 'dark' ? 'vs-dark' : 'vs',
+      automaticLayout: true,
+      minimap: { enabled: false },
+      scrollBeyondLastLine: false,
+      fontSize: 14,
+      lineNumbers: 'on',
+      roundedSelection: false,
+      scrollbar: {
+        vertical: 'auto',
+        horizontal: 'auto'
+      }
+    });
+
+    // Listener para cambios en el código
+    this.monacoEditor.onDidChangeModelContent(() => {
+      const language = $('#languageSelect').value;
+      this.playgroundCode[language] = this.monacoEditor.getValue();
+      this.savePlaygroundCode();
+    });
+  }
+
+  setupPlaygroundEventListeners() {
+    // Selector de lenguaje
+    $('#languageSelect')?.addEventListener('change', (e) => {
+      const language = e.target.value;
+      if (this.monacoEditor) {
+        this.monacoEditor.setValue(this.playgroundCode[language] || '');
+        monaco.editor.setModelLanguage(this.monacoEditor.getModel(), language);
+      }
+    });
+
+    // Botones del playground
+    $('#btnRunCode')?.addEventListener('click', () => this.updatePreview());
+    $('#btnClearPlayground')?.addEventListener('click', () => this.clearPlayground());
+    $('#btnFullscreen')?.addEventListener('click', () => this.toggleFullscreen());
+    $('#btnAnalyze')?.addEventListener('click', () => this.analyzeCode());
+
+    // Selector de dispositivo
+    $$('.device-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const device = e.currentTarget.dataset.device;
+        this.setPreviewDevice(device);
+      });
+    });
+  }
+
+  updatePreview() {
+    const iframe = $('#previewFrame');
+    if (!iframe) return;
+
+    const html = this.playgroundCode.html || '';
+    const css = this.playgroundCode.css || '';
+    const js = this.playgroundCode.javascript || '';
+
+    const fullHtml = `
+      <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Preview</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@bancolombia/design-system-web@latest/dist/design-system.css">
+        <style>
+          body { 
+            margin: 20px; 
+            font-family: 'Inter', sans-serif; 
+            background: #f8fafc;
+          }
+          ${css}
+        </style>
+      </head>
+      <body>
+        ${html}
+        <script src="https://cdn.jsdelivr.net/npm/@bancolombia/design-system-web@latest/dist/design-system.js"></script>
+        <script>
+          try {
+            ${js}
+          } catch (error) {
+            console.error('Error en JavaScript:', error);
+          }
+        </script>
+      </body>
+      </html>
+    `;
+
+    iframe.srcdoc = fullHtml;
+  }
+
+  setPreviewDevice(device) {
+    $$('.device-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.device === device);
+    });
+
+    const iframe = $('#previewFrame');
+    if (iframe) {
+      iframe.dataset.device = device;
+    }
+  }
+
+  clearPlayground() {
+    if (confirm('¿Estás seguro de que quieres limpiar el playground?')) {
+      this.playgroundCode = {
+        html: '',
+        css: '',
+        javascript: ''
+      };
+      this.savePlaygroundCode();
+      
+      if (this.monacoEditor) {
+        this.monacoEditor.setValue('');
+      }
+      
+      this.updatePreview();
+      showToast('Playground limpiado', 'success');
+    }
+  }
+
+  toggleFullscreen() {
+    const playgroundContainer = $('.playground-container');
+    if (playgroundContainer) {
+      playgroundContainer.classList.toggle('fullscreen');
+      showToast('Modo pantalla completa activado', 'info');
+    }
+  }
+
+  async analyzeCode() {
+    try {
+      showToast('Analizando código...', 'info');
+      
+      const response = await fetch(`${CONFIG.API_BASE}/playground/validate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          html: this.playgroundCode.html || '',
+          css: this.playgroundCode.css || '',
+          javascript: this.playgroundCode.javascript || ''
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Error en la validación');
+      }
+      
+      const metrics = await response.json();
+      this.displayQualityResults(metrics);
+      showToast('Análisis completado', 'success');
+      
+    } catch (error) {
+      console.error('Error analizando código:', error);
+      showToast('Error en el análisis', 'error');
+      
+      // Fallback al análisis local
+      const localMetrics = this.calculateQualityMetrics();
+      this.displayQualityResults(localMetrics);
+    }
+  }
+
+  calculateQualityMetrics() {
+    const html = this.playgroundCode.html || '';
+    const css = this.playgroundCode.css || '';
+    
+    // Análisis básico de accesibilidad
+    const accessibilityScore = this.analyzeAccessibility(html);
+    
+    // Análisis básico de performance
+    const performanceScore = this.analyzePerformance(html, css);
+    
+    // Análisis de Design System
+    const designSystemScore = this.analyzeDesignSystem(html);
+    
+    return {
+      accessibility: accessibilityScore,
+      performance: performanceScore,
+      designSystem: designSystemScore,
+      issues: this.findIssues(html, css)
+    };
+  }
+
+  analyzeAccessibility(html) {
+    let score = 100;
+    const issues = [];
+    
+    // Verificar alt en imágenes
+    if (html.includes('<img') && !html.includes('alt=')) {
+      score -= 20;
+      issues.push('Imágenes sin atributo alt');
+    }
+    
+    // Verificar labels en inputs
+    if (html.includes('<input') && !html.includes('label')) {
+      score -= 15;
+      issues.push('Inputs sin labels asociados');
+    }
+    
+    return Math.max(0, score);
+  }
+
+  analyzePerformance(html, css) {
+    let score = 100;
+    
+    // Penalizar por CSS inline excesivo
+    if (css.length > 1000) {
+      score -= 10;
+    }
+    
+    // Penalizar por HTML muy largo
+    if (html.length > 2000) {
+      score -= 15;
+    }
+    
+    return Math.max(0, score);
+  }
+
+  analyzeDesignSystem(html) {
+    let score = 0;
+    
+    // Verificar uso de componentes del Design System
+    const dsComponents = ['bc-button', 'bc-card', 'bc-input', 'bc-alert', 'bc-modal'];
+    const usedComponents = dsComponents.filter(comp => html.includes(comp));
+    
+    score = (usedComponents.length / dsComponents.length) * 100;
+    
+    return Math.round(score);
+  }
+
+  findIssues(html, css) {
+    const issues = [];
+    
+    if (!html.trim()) {
+      issues.push({
+        severity: 'high',
+        title: 'HTML vacío',
+        description: 'No hay contenido HTML para mostrar'
+      });
+    }
+    
+    if (html.includes('style=')) {
+      issues.push({
+        severity: 'medium',
+        title: 'Estilos inline detectados',
+        description: 'Considera mover los estilos al CSS para mejor mantenimiento'
+      });
+    }
+    
+    return issues;
+  }
+
+  displayQualityResults(metrics) {
+    // Actualizar métricas
+    $$('.metric-fill').forEach(fill => {
+      const metricType = fill.closest('.metric').querySelector('.metric-label').textContent.toLowerCase();
+      let score = 0;
+      
+      if (metricType.includes('accesibilidad')) {
+        score = metrics.accessibility_score || metrics.accessibility || 0;
+      } else if (metricType.includes('performance')) {
+        score = metrics.performance_score || metrics.performance || 0;
+      } else if (metricType.includes('design')) {
+        score = metrics.design_system_score || metrics.designSystem || 0;
+      }
+      
+      fill.dataset.score = score;
+      fill.style.width = `${score}%`;
+      fill.closest('.metric').querySelector('.metric-score').textContent = `${score}%`;
+    });
+    
+    // Mostrar issues
+    const issuesContainer = $('#qualityIssues');
+    const issues = metrics.issues || [];
+    
+    if (issues.length === 0) {
+      issuesContainer.innerHTML = '<p class="empty-state">¡Excelente! No se encontraron problemas</p>';
+    } else {
+      issuesContainer.innerHTML = issues.map(issue => `
+        <div class="quality-issue issue-severity-${issue.severity}">
+          <div class="issue-icon">${this.getIssueIcon(issue.severity)}</div>
+          <div class="issue-content">
+            <div class="issue-title">${issue.title}</div>
+            <div class="issue-description">${issue.description}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  getIssueIcon(severity) {
+    switch (severity) {
+      case 'high': return '🚨';
+      case 'medium': return '⚠️';
+      case 'low': return 'ℹ️';
+      default: return '⚠️';
     }
   }
 }
@@ -200,12 +603,12 @@ function showToast(message, type = 'info') {
   
   document.body.appendChild(toast);
   
-  // Mostrar
+  // Animar entrada
   setTimeout(() => {
     toast.style.transform = 'translateX(0)';
   }, 100);
   
-  // Ocultar y remover
+  // Auto-remover después de 3 segundos
   setTimeout(() => {
     toast.style.transform = 'translateX(100%)';
     setTimeout(() => {
@@ -216,7 +619,7 @@ function showToast(message, type = 'info') {
   }, 3000);
 }
 
-// ===== CLIENTE API =====
+// ===== API CLIENT =====
 class ApiClient {
   constructor(baseUrl = CONFIG.API_BASE) {
     this.baseUrl = baseUrl;
@@ -254,14 +657,14 @@ class ApiClient {
   }
 }
 
-// ===== FUNCIONES DE UTILIDAD =====
+// ===== FUNCIONES DE CLIPBOARD =====
 async function copyToClipboard(text) {
   try {
     if (navigator.clipboard && window.isSecureContext) {
       await navigator.clipboard.writeText(text);
       return true;
     } else {
-      // Fallback para navegadores sin soporte
+      // Fallback para navegadores más antiguos
       const textArea = document.createElement('textarea');
       textArea.value = text;
       textArea.style.position = 'fixed';
@@ -285,121 +688,104 @@ async function copyToClipboard(text) {
 class SemantikApp {
   constructor() {
     this.state = new AppState();
-    this.api = new ApiClient();
+    this.apiClient = new ApiClient();
     this.initializeEventListeners();
     this.initializeTheme();
     this.state.renderHistory();
   }
 
   initializeEventListeners() {
-    // Input de prompt
-    const prompt = $('#prompt');
-    if (prompt) {
-      prompt.addEventListener('input', () => {
-        this.state.updateCharCounter();
-        this.state.toggleButton();
+    // Generador
+    $('#prompt')?.addEventListener('input', () => {
+      this.state.updateCharCounter();
+      this.state.toggleButton();
+    });
+
+    $('#btnCode')?.addEventListener('click', () => this.handleGenerateCode());
+    $('#btnCopy')?.addEventListener('click', () => this.handleCopy());
+    $('#btnSendToPlayground')?.addEventListener('click', () => this.state.sendToPlayground());
+
+    // Pestañas
+    $$('.tab-button').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const tab = e.currentTarget.dataset.tab;
+        this.state.switchTab(tab);
       });
-      
-      prompt.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-          e.preventDefault();
-          this.handleGenerateCode();
-        }
-      });
-    }
+    });
 
-    // Botón generar código
-    const btnCode = $('#btnCode');
-    if (btnCode) {
-      btnCode.addEventListener('click', () => this.handleGenerateCode());
-    }
+    // Tema
+    $('#themeToggle')?.addEventListener('click', () => this.toggleTheme());
 
-    // Botón copiar
-    const btnCopy = $('#btnCopy');
-    if (btnCopy) {
-      btnCopy.addEventListener('click', () => this.handleCopy());
-    }
-
-    // Toggle de tema
-    const themeToggle = $('#themeToggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => this.toggleTheme());
-    }
+    // Inicializar contadores y botones
+    this.state.updateCharCounter();
+    this.state.toggleButton();
   }
 
   async handleGenerateCode() {
     const query = $('#prompt').value.trim();
-    
-    if (!query) {
-      showToast('Por favor, describe el componente que necesitas', 'warning');
-      return;
-    }
+    if (!query || this.state.isLoading) return;
 
     this.state.setLoading(true);
 
     try {
-      const result = await this.api.generateComponent(query);
+      const result = await this.apiClient.generateComponent(query);
       
       if (result.success) {
         this.state.currentResult = result;
-        this.state.showResult();
         this.state.addToHistory(query, result);
+        this.state.showResult();
         showToast('Componente generado exitosamente', 'success');
       } else {
-        throw new Error('Error en la generación del componente');
+        throw new Error(result.error || 'Error desconocido');
       }
     } catch (error) {
-      console.error('Error generando código:', error);
-      showToast('Error al generar el componente. Intenta nuevamente.', 'error');
+      console.error('Error generando componente:', error);
+      showToast('Error generando el componente. Inténtalo de nuevo.', 'error');
     } finally {
       this.state.setLoading(false);
     }
   }
 
   async handleCopy() {
-    if (!this.state.currentResult || !this.state.currentResult.component_code) {
-      showToast('No hay código para copiar', 'warning');
-      return;
-    }
+    if (!this.state.currentResult?.component_code) return;
 
     const success = await copyToClipboard(this.state.currentResult.component_code);
     
     if (success) {
       showToast('Código copiado al portapapeles', 'success');
     } else {
-      showToast('Error al copiar el código', 'error');
+      showToast('Error copiando el código', 'error');
     }
   }
 
   initializeTheme() {
-    const savedTheme = localStorage.getItem('semantika_theme') || 'dark';
+    const savedTheme = localStorage.getItem('semantika-theme') || 'light';
     this.setTheme(savedTheme);
   }
 
   toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    const currentTheme = document.documentElement.dataset.theme || 'light';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     this.setTheme(newTheme);
   }
 
   setTheme(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('semantika_theme', theme);
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('semantika-theme', theme);
     
     const themeIcon = $('.theme-icon');
     if (themeIcon) {
-      themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
+
+    // Actualizar tema de Monaco Editor si está inicializado
+    if (this.state.monacoEditor) {
+      monaco.editor.setTheme(theme === 'dark' ? 'vs-dark' : 'vs');
     }
   }
 }
 
 // ===== INICIALIZACIÓN =====
 document.addEventListener('DOMContentLoaded', () => {
-  try {
-    window.semantikApp = new SemantikApp();
-    console.log('✅ Semantika inicializado correctamente');
-  } catch (error) {
-    console.error('❌ Error inicializando Semantika:', error);
-    showToast('Error al inicializar la aplicación', 'error');
-  }
+  window.semantikApp = new SemantikApp();
 }); 
